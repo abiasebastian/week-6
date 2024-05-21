@@ -1,11 +1,15 @@
 const { MongoClient } = require("mongodb");
 
 const db = async function () {
-  const url = "mongodb://localhost:27017/";
-  const client = new MongoClient(url);
-  await client.connect();
-  const database = client.db("week-6");
-  return database;
+  try {
+    const url = "mongodb://localhost:27017/";
+    const client = new MongoClient(url);
+    await client.connect();
+    const database = client.db("week-6");
+    return database;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const collections = async () => {

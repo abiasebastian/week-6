@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-
 app.use("/admin", adminRouter);
 app.use("/", router);
 app.use((err, req, res, next) => res.status(500).send(err.message));

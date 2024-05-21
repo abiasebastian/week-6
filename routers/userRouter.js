@@ -6,8 +6,8 @@ const collections = require("../dbConnect");
 (async ()=> {
   let userCollection;
 
- await collections().then((cols) => {
-    userCollection = cols.userCollection;
+ await collections().then((db) => {
+    userCollection = db.userCollection;
   });
 
   router.get("/", (req, res) => {
@@ -17,6 +17,7 @@ const collections = require("../dbConnect");
       res
         .status(200)
         .render("profile", { user: req.session.user, title: "Profile" });
+        console.log('session:'+req.session.user)
     } else {
       //Render login page if no session is set
       res.render("index");
@@ -39,7 +40,8 @@ const collections = require("../dbConnect");
         ],
       });
       if (result) {
-        res.send({ authenticated: true });
+        req.session.user={name:result.name,batch:result.batch}
+        res.render('profile',{user:req.session.user})
       } else {
         res.send({ authenticated: false });
       }
