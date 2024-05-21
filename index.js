@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const session = require("express-session");
-const router = require("./router");
-const adminRouter = require("./adminRouter");
+const router = require("./routers/userRouter");
+const adminRouter = require("./routers/adminRouter");
 const morgan = require("morgan");
 const PORT = process.env.PORT || 4000;
 

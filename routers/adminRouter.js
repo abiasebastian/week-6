@@ -1,16 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { adminCollection,userCollection } = require("./dbConnect");
+const { adminCollection,userCollection } = require("../dbConnect");
 
+//Admin authentication
 router.post("/login", async (req, res, next) => {
   try {
     const result = await adminCollection.countDocuments({
       $and: [{ username: req.body.username }, { password: req.body.password }],
     });
     if (result === 1) {
-      res.send({ authenticated: true });
+      req.session.admin=true
     } else {
-      res.send({ authenticated: false });
+      res.send('WRONG CREDENTIALS');
     }
   } catch (error) {
     next(error);
