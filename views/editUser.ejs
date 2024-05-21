@@ -1,15 +1,16 @@
 
-<%- include('partials/head',{title:'Admin Login Page'}) %>
+<%- include('partials/head',{title:'EDIT USER'}) %>
 
 <div class="banner">
-  <h1>Admin Login</h1>
+  <h1>User Update</h1>
 </div>
 <br>
 <div class="form-container">
-  <form action="http://localhost:4000/admin/login" method="post">
-    <label for="username">Username <input type="text" name="username" required></label><br>
-    <label for="password">Password <input type="password" name="password" required></label><br>
-    <input type="submit" value="Log in">
+  <form action="http://localhost:4000/admin/updateUser/<%=user.id %>" method="post">
+    <label for="name"> Username <input type="text" name="username" value='<%= user.username %>' required></label><br>
+    <label for="name"> Name <input type="text" name="name" value='<%= user.name %>' required></label><br>
+    <label for="batch">Batch <input type="text" name="batch" value="<%= user.batch %>" required></label><br>
+    <input type="submit" value="Update">
   </form>
 </div>
 <style>

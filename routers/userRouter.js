@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const collections = require("../dbConnect");
+const mongo = require("../dbConnect");
 
 
 (async ()=> {
   let userCollection;
 
- await collections().then((db) => {
+ await mongo().then((db) => {
     userCollection = db.userCollection;
   });
 
@@ -25,10 +25,13 @@ const collections = require("../dbConnect");
   });
 
   //Log out
-  router.get("/logout", (req, res) => {
-    req.session.destroy();
-    res.redirect("/");
-  });
+  router.get('/logout', (req,res)=>{
+    try{
+      req.session.destroy(()=>res.render('index'))
+    }catch(error){
+      next(error)
+    }
+  })
 
   //User Authentication
   router.post("/login", async (req, res, next) => {
@@ -49,7 +52,9 @@ const collections = require("../dbConnect");
       next(error);
     }
   });
-
+router.get('/signup',async(req,res,next)=>{
+  res.render('signup')
+})
   router.post("/signup", async (req, res, next) => {
     try {
       await userCollection.insertOne({

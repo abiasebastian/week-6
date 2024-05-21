@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient,ObjectId } = require("mongodb");
 
 const db = async function () {
   try {
@@ -12,12 +12,14 @@ const db = async function () {
   }
 };
 
-const collections = async () => {
+const mongo = async () => {
   const database = await db();
   return {
     adminCollection: database.collection("admins"),
     userCollection: database.collection("users"),
+  
   };
 };
 
-module.exports = collections;
+module.exports = mongo
+

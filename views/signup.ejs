@@ -1,15 +1,17 @@
 
-<%- include('partials/head',{title:'Admin Login Page'}) %>
+<%- include('partials/head',{title:'Sign up Page'}) %>
 
 <div class="banner">
-  <h1>Admin Login</h1>
+  <h1>Sign up</h1>
 </div>
 <br>
 <div class="form-container">
-  <form action="http://localhost:4000/admin/login" method="post">
+  <form action="http://localhost:4000/signup" method="post">
     <label for="username">Username <input type="text" name="username" required></label><br>
     <label for="password">Password <input type="password" name="password" required></label><br>
-    <input type="submit" value="Log in">
+    <label for="name">Name <input type="text" name="name" required></label><br>
+    <label for="batch">Batch <input type="text" name="batch" required></label><br>
+    <input type="submit" value="Sign Up">
   </form>
 </div>
 <style>

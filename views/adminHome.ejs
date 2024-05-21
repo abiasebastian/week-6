@@ -1,0 +1,52 @@
+<%-include('partials/head',{title:'Admin Home'})%>
+    <div class="container">
+        <h1></h1>
+
+        <table class="table">
+            <thead>
+
+                <td>Name</td>
+                <td>Batch</td>
+                <td>Username</td>
+                <td>Edit</td>
+                <td>Delete</td>
+
+            </thead>
+            <tbody>
+                <% for (const user of userList) { %>
+                    <tr>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.batch %>
+                        </td>
+                        <td>
+                            <%= user.username %>
+                        </td>
+                        <td><a
+                                href="admin/updateUser/<%=user._id %>/<%=user.username %>/<%=user.name %>/<%=user.batch %>">✎</a>
+                        </td>
+                        <td><a onclick="confirmDelete()" style="cursor: pointer;">🗑</a></td>
+                    </tr>
+
+                    <% } %>
+            </tbody>
+
+        </table>
+        <button class="logout-btn" onclick="logOut()">LOG OUT</button>
+        <script>
+            function logOut() {
+                window.location.href = "http://localhost:4000/admin/logout"
+            }
+
+            function confirmDelete(id) {
+                if (confirm("CONFIRM DELETE") == true) {
+                    window.location.href = `admin/deleteUser/${id}`
+                }
+               
+            }
+        </script>
+
+
+        <%include('partials/tail')%>
