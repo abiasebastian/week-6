@@ -75,7 +75,11 @@ const session = require("express-session");
   })
   
   router.get('/updateUser/:id/:username/:name/:batch', restrictAdmin,async(req,res,next)=>{
-    res.render('editUser',{user:req.params})
+    try{
+      res.render('editUser',{user:req.params})
+    }catch(error){
+      next(error)
+    }
   });
 
   router.get('/logout', (req,res)=>{

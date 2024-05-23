@@ -14,7 +14,10 @@ app.use(
     saveUninitialized: true,
   })
 );
-
+app.use((req,res,next)=>{
+  console.log(req.params)
+  next()
+})
 app.use((req, res, next) => {
   res.set({
     "Cache-Control": "no-cache, no-store, must-revalidate",

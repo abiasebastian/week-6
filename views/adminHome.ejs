@@ -27,7 +27,7 @@
                         <td><a
                                 href="admin/updateUser/<%=user._id %>/<%=user.username %>/<%=user.name %>/<%=user.batch %>">✎</a>
                         </td>
-                        <td><a onclick="confirmDelete()" style="cursor: pointer;">🗑</a></td>
+                        <td><a onclick="confirmDelete('<%=escape(user._id) %>')" style="cursor: pointer;">🗑</a></td>
                     </tr>
 
                     <% } %>

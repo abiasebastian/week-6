@@ -39,14 +39,15 @@ const mongo = require("../dbConnect");
       const result = await userCollection.findOne({
         $and: [
           { username: req.body.username },
-          { password: req.body.password },
+          { password: req.body.password }
         ],
       });
+      console.log(result)
       if (result) {
         req.session.user={name:result.name,batch:result.batch}
         res.render('profile',{user:req.session.user})
       } else {
-        res.send({ authenticated: false });
+        res.send('Wrong Credential');
       }
     } catch (error) {
       next(error);
