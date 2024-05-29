@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const mongo = require("../dbConnect");
 const { ObjectId } = require("mongodb");
-const session = require("express-session");
 
 (async () => {
   let adminCollection;
@@ -51,7 +50,7 @@ const session = require("express-session");
   router.get("/deleteUser/:id", restrictAdmin, async (req, res, next) => {
     try {
       result = await userCollection.deleteOne({
-        _id: new ObjectId(req.params.id),
+        _id:  new ObjectId(req.params.id),
       });
       console.log(result);
       if (result.deletedCount === 1) {
